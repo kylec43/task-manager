@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { Text, FAB } from 'react-native-elements';
 import FA5 from 'react-native-vector-icons/FontAwesome5';
-import TaskRow from '../components/taskRow';
+import FloatingButton from '../components/FloatingButton';
+import TaskRow from '../components/TaskRow';
+import { Context as TaskContext } from '../context/TaskContext';
+import { useFocusEffect } from '@react-navigation/native';
 
 const HomeScreen = ({ navigation }) => {
 
+    const { tasks, getTasks } = useContext(TaskContext);
+    console.log(tasks.length);
+    useFocusEffect(() => {
+        getTasks();
+    });
+
     return (
-        <View style={styles.mainView}>
+        <>
             <ScrollView>
-                {new Array(20).fill(<TaskRow key={new Date().getTime()} />)}
+                {tasks.map((task, index) => {
+                    return (
+                        <TaskRow
+                            key={index}
+                            name={task.name}
+                            summary={task.summary}
+                        />
+                    );
+                })}
+                {
+                    tasks.length < 15 ? Array(15-tasks.length).fill(0).map((value, index) => {
+                        console.log(index);
+                        return (
+                            <TaskRow
+                                key={index*15}
+                            />
+                        );
+                    }) : null
+                }
             </ScrollView>
-            <TouchableOpacity 
-                style={[styles.floatingButton, styles.elevate]}
+            <FloatingButton 
+                style={styles.floatingButton}
                 onPress={() => navigation.navigate("CreateTask")}
-            >
-                <Text><FA5 name="plus" size={25} color="white" /></Text>
-            </TouchableOpacity>
-        </View>
+                icon={<FA5 name="plus" size={25} color="white" />}
+            />
+        </>
     );
 
 };
@@ -28,21 +54,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 45,
         right: 40,
-        backgroundColor: "#0295d8",
-        width: 60,
-        height: 60,
-        borderRadius: 35,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-
-    mainView: {
-        flex: 1,
-        flexDirection: "column",
-    },
-
-    elevate: {
-        elevation: 5
     },
 });
 

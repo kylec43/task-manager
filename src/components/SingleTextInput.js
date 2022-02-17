@@ -3,14 +3,14 @@ import { View, StyleSheet } from 'react-native';
 import { Input, Text } from 'react-native-elements';
 import Spacer from './Spacer';
 
-const SingleTextInput = ({ label, placeholder, text, onChangeText }) => {
+const SingleTextInput = ({ label, placeholder, value, onChangeText }) => {
 
     return (
         <>
             { label && <Text style={styles.label} h4>{label}</Text> }
             { label && <Spacer space={8} /> }
             <Input
-                value={text}
+                value={value}
                 onChangeText={(value) => onChangeText(value)}
                 style={styles.input}
                 placeholder={placeholder ? placeholder : ""}
@@ -24,7 +24,8 @@ const SingleTextInput = ({ label, placeholder, text, onChangeText }) => {
 
 const styles = StyleSheet.create({
     label: {
-        marginLeft: 8
+        marginLeft: 8,
+        color: "rgba(0,0,0,0.6)"
     },
     input: {
         fontSize: 20,

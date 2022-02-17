@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import CreateTaskScreen from './src/screens/CreateTaskScreen';
-
+import { Provider as TaskProvider } from './src/context/TaskContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +24,9 @@ const StackNavigator = () => {
 const App = () => {
 
   return (
-    <StackNavigator></StackNavigator>
+    <TaskProvider>
+      <StackNavigator />
+    </TaskProvider>
   );
 
 };
