@@ -2,12 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react';
 import SelectButton from '../components/SelectButton';
 
 
+const initialSelectedDays = new Array(7).fill(false);
+initialSelectedDays[0] = true;
+
 
 const useWeekdaySelect = () => {
-
-    const initialSelectedDays = new Array(7).fill(false);
-    initialSelectedDays[0] = true;
-    console.log("Hook ran");
 
     const [buttons, setButtons] = useState([]);
     const [selectedDays, setSelectedDays] = useState(initialSelectedDays);
