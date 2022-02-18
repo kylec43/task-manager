@@ -3,7 +3,8 @@ import { ScrollView, StyleSheet } from 'react-native';
 import SingleTextInput from './SingleTextInput';
 import MultiTextInput from './MultiTextInput';
 import FrequencyPicker from './FrequencyPicker';
-
+import WeekdaySelect from './WeekdaySelect';
+import SelectButton from './SelectButton';
 
 const TaskForm = ({ 
     containerStyle, nameValue, summaryValue, 
@@ -15,19 +16,20 @@ const TaskForm = ({
             <SingleTextInput
                 value={nameValue}
                 onChangeText={onChangeName}
-                label="Name:"
+                label="Name *"
             />
 
             <MultiTextInput 
                 value={summaryValue}
                 onChangeText={onChangeSummary}
-                label="Summary:"           
+                label="Summary"           
             />
             <FrequencyPicker
                 label="Frequency"
                 selectedFrequency={selectedFrequency}
                 onChangeFrequency={onChangeFrequency}
             />
+            { selectedFrequency === "weekly" && <WeekdaySelect /> }
         </ScrollView>
     );
 };

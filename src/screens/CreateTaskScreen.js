@@ -4,16 +4,17 @@ import FloatingButton from '../components/FloatingButton';
 import FA from 'react-native-vector-icons/FontAwesome';
 import FA5 from 'react-native-vector-icons/FontAwesome5';
 import TaskForm from '../components/TaskForm';
-import { Context as TaskContext } from '../context/TaskContext';
-import { showConfirmation } from '../helpers/ShowAlert';
+import { showConfirmation, showAlert } from '../helpers/ShowAlert';
+import useTask from '../hooks/useTask';
 
 const CreateTaskScreen = ({ navigation }) => {
 
-    const [name, setName] = useState("");
-    const [summary, setSummary] = useState("");
-    const [selectedFrequency, setSelectedFrequency] = useState("daily");
-
-    const { addTask } = useContext(TaskContext);
+    const { 
+        name, setName, 
+        summary, setSummary, 
+        selectedFrequency, setSelectedFrequency, 
+        saveTask 
+    } = useTask();
 
     return (
         <>
@@ -32,7 +33,7 @@ const CreateTaskScreen = ({ navigation }) => {
                 style={styles.discardButton}
                 icon={<FA name="close" size={25} color="white" />}
                 onPress={() => showConfirmation({
-                    text: "Are you sure you want to discard this task?",
+                    message: "Are you sure you want to discard this task?",
                     confirmText: "Discard",
                     onConfirm: () => navigation.navigate("Home")
                 })}
@@ -40,14 +41,7 @@ const CreateTaskScreen = ({ navigation }) => {
             <FloatingButton 
                 style={styles.acceptButton}
                 icon={<FA5 name="check" size={25} color="white" />}
-                onPress={() => {
-                    addTask({
-                        name,
-                        summary
-                    });
-                    
-                    navigation.navigate("Home");
-                }}
+                onPress={saveTask}
             />
         </>
     );

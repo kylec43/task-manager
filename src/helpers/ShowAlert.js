@@ -2,7 +2,7 @@ import { Alert } from "react-native";
 
 const showConfirmation = ({ 
     title = "Confirmation", 
-    text, 
+    message, 
     cancelText = "Cancel", 
     confirmText = "Confirm", 
     onCancel = () => {}, 
@@ -10,7 +10,7 @@ const showConfirmation = ({
 }) => {
     Alert.alert(
         title,
-        text,
+        message,
         [
             {
                 text: cancelText,
@@ -27,6 +27,22 @@ const showConfirmation = ({
 };
 
 
+const showAlert = ({ title, message, onOk = () => {} }) => {
+    Alert.alert(
+        title,
+        message,
+        [
+            {
+                text: "OK",
+                style: "default",
+                onPress: onOk
+            }
+        ]
+    );
+};
+
+
 export {
     showConfirmation,
+    showAlert
 }

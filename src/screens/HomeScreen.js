@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 const HomeScreen = ({ navigation }) => {
 
     const { tasks, getTasks } = useContext(TaskContext);
-    console.log(tasks.length);
+
     useFocusEffect(() => {
         getTasks();
     });
@@ -29,7 +29,6 @@ const HomeScreen = ({ navigation }) => {
                 })}
                 {
                     tasks.length < 15 ? Array(15-tasks.length).fill(0).map((value, index) => {
-                        console.log(index);
                         return (
                             <TaskRow
                                 key={index*15}
