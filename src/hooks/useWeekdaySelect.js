@@ -11,7 +11,7 @@ const useWeekdaySelect = () => {
     const [buttons, setButtons] = useState([]);
     const [selectedDays, setSelectedDays] = useState(initialSelectedDays);
 
-    const createButtons = useCallback((day, index) => {
+    const createSelectButtons = useCallback((day, index) => {
         return (
             <SelectButton
                 label={day}
@@ -32,10 +32,10 @@ const useWeekdaySelect = () => {
 
     useEffect(() => {
         const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const newButtons = weekdays.map(createButtons);
+        const newButtons = weekdays.map(createSelectButtons);
         setButtons(newButtons);
 
-    }, [createButtons]);
+    }, []);
 
 
 

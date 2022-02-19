@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { showAlert } from '../helpers/ShowAlert';
+import { showAlert } from '../util/ShowAlert';
 import { Context as TaskContext } from '../context/TaskContext';
 import { useNavigation } from '@react-navigation/native';
 
-const useTask = () => {
+const useTaskInput = () => {
 
 
     const [name, setName] = useState("");
@@ -34,4 +34,4 @@ const useTask = () => {
     return { name, summary, selectedFrequency, setName, setSummary, setSelectedFrequency, saveTask };
 };
 
-export default useTask;
+export default useTaskInput;

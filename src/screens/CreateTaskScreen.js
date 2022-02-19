@@ -4,7 +4,7 @@ import FloatingButton from '../components/FloatingButton';
 import FA from 'react-native-vector-icons/FontAwesome';
 import FA5 from 'react-native-vector-icons/FontAwesome5';
 import TaskForm from '../components/TaskForm';
-import { showConfirmation, showAlert } from '../helpers/ShowAlert';
+import { showConfirmation } from '../util/ShowAlert';
 import useTask from '../hooks/useTask';
 
 const CreateTaskScreen = ({ navigation }) => {
