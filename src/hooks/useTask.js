@@ -3,13 +3,20 @@ import { showAlert } from '../util/ShowAlert';
 import { Context as TaskContext } from '../context/TaskContext';
 import { useNavigation } from '@react-navigation/native';
 
+
+const initialSelectedWeekdays = new Array(7).fill(false);
+initialSelectedWeekdays[0] = true;
+
 const useTaskInput = () => {
 
 
     const [name, setName] = useState("");
     const [summary, setSummary] = useState("");
-    const [selectedFrequency, setSelectedFrequency] = useState("daily");
+    const [frequency, setFrequency] = useState("daily");
+    const [selectedWeekdays, setSelectedWeekdays] = useState(initialSelectedWeekdays);
+    const [calendarDay, setCalendarDay] = useState(new Date());
 
+    
     const navigation = useNavigation();
 
     const { addTask } = useContext(TaskContext);
@@ -18,7 +25,10 @@ const useTaskInput = () => {
         if (name.length > 0) {
             addTask({
                 name,
-                summary
+                summary,
+                frequency,
+                selectedWeekdays,
+                calendarDay
             });
             
             navigation.navigate("Home");
@@ -31,7 +41,10 @@ const useTaskInput = () => {
     };
 
 
-    return { name, summary, selectedFrequency, setName, setSummary, setSelectedFrequency, saveTask };
+    return { name, summary, frequency, calendarDay, selectedWeekdays, 
+        setName, setSummary, setFrequency, setCalendarDay, setSelectedWeekdays, 
+        saveTask 
+    };
 };
 
 export default useTaskInput;

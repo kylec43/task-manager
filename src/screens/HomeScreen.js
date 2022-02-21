@@ -24,6 +24,9 @@ const HomeScreen = ({ navigation }) => {
                             key={index}
                             name={task.name}
                             summary={task.summary}
+                            frequency={task.frequency}
+                            selectedWeekdays={task.selectedWeekdays}
+                            calendarDay={task.calendarDay}
                         />
                     );
                 })}

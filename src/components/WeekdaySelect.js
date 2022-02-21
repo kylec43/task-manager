@@ -1,28 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import useWeekdaySelect from '../hooks/useWeekdaySelect';
+import SelectButton from './SelectButton';
+
+const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+const WeekdaySelect = ({ selectedDays, onChange }) => {
+
+    const [weekdayButtons, setWeekdayButtons] = useState([]);
 
 
-const WeekdaySelect = () => {
+    useEffect(() => {
 
-    const { buttons, selectedDays } = useWeekdaySelect();
+        const newWeekdayButtons = weekdays.map((day, index) => {
+            return (
+                <SelectButton
+                    label={day}
+                    selected={selectedDays[index]}
+                    id={index}
+                    key={index}
+                    onPress={(id) => {
+                        if (!(selectedDays[id] && selectedDays.filter(selected => selected).length === 1)) {
+                            const newSelectedDays = [...selectedDays];
+                            newSelectedDays[id] = newSelectedDays[id] ? false : true;
+                            onChange([...newSelectedDays]);
+                        }
+                    }}
+                />
+            );
+        });
+        setWeekdayButtons(newWeekdayButtons);
+
+    }, [selectedDays]);
 
     return (
-        <>
-            <View style={styles.container}>
-                {buttons}
-            </View>
-        </>
-        // <ButtonGroup
-        //     buttons={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
-        //     selectMultiple
-        //     selectedIndexes={[0]}
-        //     containerStyle={styles.container}
-        //     buttonStyle={styles.button}
-        //     textStyle={{fontWeight: "bold"}}
-        //     buttonContainerStyle={styles.buttonContainer}
-        //     selectedButtonStyle={styles.selectedButton}
-        // />
+        <View style={styles.container}>
+            {weekdayButtons}
+        </View>
     );
 };
 

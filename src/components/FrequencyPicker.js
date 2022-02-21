@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import Spacer from './Spacer';
 
-const FrequencyPicker = ({ selectedFrequency, onChangeFrequency, label }) => {
+const FrequencyPicker = ({ frequency, onChangeFrequency, label }) => {
 
     return (
         <>
@@ -13,7 +13,7 @@ const FrequencyPicker = ({ selectedFrequency, onChangeFrequency, label }) => {
             { label && <Spacer space={8} /> }
             <View style={styles.container}>
                 <Picker
-                    selectedValue={selectedFrequency}
+                    selectedValue={frequency}
                     style={styles.picker}
                     onValueChange={onChangeFrequency}
                     itemStyle={styles.item}

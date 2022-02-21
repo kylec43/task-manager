@@ -12,8 +12,10 @@ const CreateTaskScreen = ({ navigation }) => {
     const { 
         name, setName, 
         summary, setSummary, 
-        selectedFrequency, setSelectedFrequency, 
-        saveTask 
+        frequency, setFrequency,
+        selectedWeekdays, setSelectedWeekdays,
+        calendarDay, setCalendarDay,
+        saveTask
     } = useTask();
 
     return (
@@ -25,8 +27,15 @@ const CreateTaskScreen = ({ navigation }) => {
                     summaryValue={summary}
                     onChangeName={setName}
                     onChangeSummary={setSummary}
-                    selectedFrequency={selectedFrequency}
-                    onChangeFrequency={setSelectedFrequency}
+                    frequencyValue={frequency}
+                    onChangeFrequency={(frequency) => {
+                        setCalendarDay(new Date());
+                        setFrequency(frequency);
+                    }}
+                    calendarDayValue={calendarDay}
+                    selectedWeekdaysValue={selectedWeekdays}
+                    onChangeCalendarDay={setCalendarDay}
+                    onChangeSelectedWeekdays={setSelectedWeekdays}
                 />
             </View>
             <FloatingButton 

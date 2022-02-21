@@ -4,11 +4,14 @@ import SingleTextInput from './SingleTextInput';
 import MultiTextInput from './MultiTextInput';
 import FrequencyPicker from './FrequencyPicker';
 import WeekdaySelect from './WeekdaySelect';
+import CalendarDaySelect from './CalendarDaySelect';
 
 const TaskForm = ({ 
-    containerStyle, nameValue, summaryValue, 
+    containerStyle, nameValue, summaryValue, frequencyValue,
+    calendarDayValue, selectedWeekdaysValue,
     onChangeName, onChangeSummary, onChangeFrequency, 
-    selectedFrequency }) => {
+    onChangeCalendarDay, onChangeSelectedWeekdays
+}) => {
 
     return (
         <ScrollView style={containerStyle}>
@@ -25,10 +28,23 @@ const TaskForm = ({
             />
             <FrequencyPicker
                 label="Frequency"
-                selectedFrequency={selectedFrequency}
+                frequency={frequencyValue}
                 onChangeFrequency={onChangeFrequency}
             />
-            { selectedFrequency === "weekly" && <WeekdaySelect /> }
+            { frequencyValue === "weekly" && 
+                <WeekdaySelect 
+                    selectedDays={selectedWeekdaysValue} 
+                    onChange={onChangeSelectedWeekdays} 
+                /> 
+            }
+            { (frequencyValue === "monthly" || frequencyValue === "yearly") && 
+                <CalendarDaySelect 
+                    value={calendarDayValue} 
+                    fromPresent 
+                    onChange={onChangeCalendarDay} 
+                /> 
+            }
+
         </ScrollView>
     );
 };

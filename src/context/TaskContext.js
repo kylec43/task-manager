@@ -35,10 +35,11 @@ const getTasks = (dispatch) => async () => {
 const addTask = (dispatch) => async (newTask) => {
 
 
-    try {
+    try {        
         const tasksData = await AsyncStorage.getItem("@tasks");
-
         const tasks = tasksData ? JSON.parse(tasksData).tasks : [];
+
+        newTask.calendarDay = newTask.calendarDay.getTime();
         tasks.push(newTask);
 
         await AsyncStorage.setItem("@tasks", JSON.stringify({ tasks }));
