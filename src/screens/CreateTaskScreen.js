@@ -11,7 +11,7 @@ const CreateTaskScreen = ({ navigation }) => {
 
     const { 
         name, setName, 
-        summary, setSummary, 
+        note, setNote, 
         frequency, setFrequency,
         selectedWeekdays, setSelectedWeekdays,
         calendarDay, setCalendarDay,
@@ -24,9 +24,9 @@ const CreateTaskScreen = ({ navigation }) => {
                 <TaskForm 
                     containerStyle={styles.container}
                     nameValue={name}
-                    summaryValue={summary}
+                    noteValue={note}
                     onChangeName={setName}
-                    onChangeSummary={setSummary}
+                    onChangeNote={setNote}
                     frequencyValue={frequency}
                     onChangeFrequency={(frequency) => {
                         setCalendarDay(new Date());

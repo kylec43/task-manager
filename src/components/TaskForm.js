@@ -7,9 +7,9 @@ import WeekdaySelect from './WeekdaySelect';
 import CalendarDaySelect from './CalendarDaySelect';
 
 const TaskForm = ({ 
-    containerStyle, nameValue, summaryValue, frequencyValue,
+    containerStyle, nameValue, noteValue, frequencyValue,
     calendarDayValue, selectedWeekdaysValue,
-    onChangeName, onChangeSummary, onChangeFrequency, 
+    onChangeName, onChangeNote, onChangeFrequency, 
     onChangeCalendarDay, onChangeSelectedWeekdays
 }) => {
 
@@ -22,9 +22,9 @@ const TaskForm = ({
             />
 
             <MultiTextInput 
-                value={summaryValue}
-                onChangeText={onChangeSummary}
-                label="Summary"           
+                value={noteValue}
+                onChangeText={onChangeNote}
+                label="Note"           
             />
             <FrequencyPicker
                 label="Frequency"

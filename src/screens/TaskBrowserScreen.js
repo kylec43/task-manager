@@ -7,7 +7,7 @@ import TaskRow from '../components/TaskRow';
 import { Context as TaskContext } from '../context/TaskContext';
 import { useFocusEffect } from '@react-navigation/native';
 
-const HomeScreen = ({ navigation }) => {
+const TaskBrowserScreen = ({ navigation }) => {
 
     const { tasks, getTasks } = useContext(TaskContext);
 
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
                         <TaskRow
                             key={index}
                             name={task.name}
-                            summary={task.summary}
+                            note={task.note}
                             frequency={task.frequency}
                             selectedWeekdays={task.selectedWeekdays}
                             calendarDay={task.calendarDay}
@@ -51,6 +51,11 @@ const HomeScreen = ({ navigation }) => {
 };
 
 
+TaskBrowserScreen.options = {
+    title: "<Text>HELLO</Text>"
+};
+
+
 const styles = StyleSheet.create({
     floatingButton: {
         position: "absolute",
@@ -60,4 +65,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default HomeScreen;
+export default TaskBrowserScreen;

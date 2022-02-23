@@ -2,13 +2,13 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Divider, Text } from 'react-native-elements';
 
-const TaskRow = ({ name, summary, frequency, selectedWeekdays, calendarDay }) => {
+const TaskRow = ({ name, note, frequency, selectedWeekdays, calendarDay }) => {
 
     return (
         <>
             <View style={styles.row}>
                 {name ? <Text>{ name }</Text> : null}
-                {summary ? <Text>{ summary }</Text> : null}
+                {note ? <Text>{ note }</Text> : null}
                 {frequency ? <Text>{ frequency }</Text> : null}
                 {selectedWeekdays ? <Text>{ selectedWeekdays.toString() }</Text> : null}
                 {calendarDay ? <Text>{ calendarDay }</Text> : null}

@@ -11,7 +11,7 @@ const useTaskInput = () => {
 
 
     const [name, setName] = useState("");
-    const [summary, setSummary] = useState("");
+    const [note, setNote] = useState("");
     const [frequency, setFrequency] = useState("daily");
     const [selectedWeekdays, setSelectedWeekdays] = useState(initialSelectedWeekdays);
     const [calendarDay, setCalendarDay] = useState(new Date());
@@ -25,7 +25,7 @@ const useTaskInput = () => {
         if (name.length > 0) {
             addTask({
                 name,
-                summary,
+                note,
                 frequency,
                 selectedWeekdays,
                 calendarDay
@@ -41,8 +41,8 @@ const useTaskInput = () => {
     };
 
 
-    return { name, summary, frequency, calendarDay, selectedWeekdays, 
-        setName, setSummary, setFrequency, setCalendarDay, setSelectedWeekdays, 
+    return { name, note, frequency, calendarDay, selectedWeekdays, 
+        setName, setNote, setFrequency, setCalendarDay, setSelectedWeekdays, 
         saveTask 
     };
 };
